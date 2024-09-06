@@ -65,27 +65,31 @@ class ListItems extends StatelessWidget {
         centerTitle: true,
         title: Text("Home Page"),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.search)),
-          IconButton(onPressed: (){
-            print("phone click is done");
-          }, icon: Icon(Icons.phone))
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                print("phone click is done");
+              },
+              icon: Icon(Icons.phone))
         ],
-
       ),
-      body: const SafeArea(
+      body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Name"),
-          Text("Date of Birth"),
-          Text("Age"),
-          Text(
+          const Text("Name"),
+          const Text("Date of Birth"),
+          const Text("Age"),
+          const Text(
             "Hello",
             style: TextStyle(
                 fontSize: 28, color: Colors.red, fontWeight: FontWeight.w500),
           ),
-          HorizontalListItems()
+          IconButton(onPressed: (){
+            print("submit");
+          }, icon: Icon(Icons.add)),
+          // const HorizontalListItems()
         ],
       )),
     );
