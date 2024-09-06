@@ -1,9 +1,10 @@
 class BankAccount {
   // Private variable to store the balance
   double _balance;
+  String name;
 
   // Constructor to initialize the balance
-  BankAccount(this._balance);
+  BankAccount(this._balance, this.name);
 
   // Public method to deposit money
   void deposit(double amount) {

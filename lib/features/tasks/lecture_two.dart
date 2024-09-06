@@ -17,7 +17,7 @@ void main(){
   /*
   default and named parameters
    */
-  showProfile(name: 'Lily', age: 25, country: 'Canada');
+  showProfile(country: 'Canada', age: 25, name: 'Lily');
   showProfile(age: 30); // name and country use default values
 
 
