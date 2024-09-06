@@ -21,6 +21,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   late Set<Marker> _markers;
+  late GoogleMapController _mapController;
 
   @override
   void initState() {
@@ -30,8 +31,7 @@ class _MapScreenState extends State<MapScreen> {
         markerId: const MarkerId('fromMarker'),
         position: LatLng(widget.fromLat, widget.fromLong),
         infoWindow: const InfoWindow(
-          title: 'From Location',
-          snippet: 'This is the starting point.',
+          title: '3 min',
         ),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
       ),
@@ -39,12 +39,21 @@ class _MapScreenState extends State<MapScreen> {
         markerId: const MarkerId('toMarker'),
         position: LatLng(widget.toLat, widget.toLong),
         infoWindow: const InfoWindow(
-          title: 'To Location',
-          snippet: 'This is the destination point.',
+          title: '22 min',
         ),
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
       ),
     };
+  }
+
+
+  void _onMapCreated(GoogleMapController controller){
+    _mapController = controller;
+    // Show info windows for both markers after the map is initialized
+    Future.delayed(const Duration(milliseconds: 50),(){
+      _mapController.showMarkerInfoWindow(const MarkerId('fromMarker'));
+      _mapController.showMarkerInfoWindow(const MarkerId('toMarker'));
+    });
   }
 
   @override
@@ -60,6 +69,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ),
       body: GoogleMap(
+        onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
           target: LatLng(widget.fromLat , widget.fromLong),
           // Initial position (e.g., San Francisco)
