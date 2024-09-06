@@ -75,27 +75,33 @@ class ListItems extends StatelessWidget {
       ),
       body: SafeArea(
           child: SizedBox(
-            height: double.infinity,
-            width: double.infinity,
-            child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-            const Text("Name"),
-            const Text("Date of Birth"),
-            const Text("Age"),
-            const Text(
-              "Hello",
-              style: TextStyle(
-                  fontSize: 28, color: Colors.red, fontWeight: FontWeight.w500),
-            ),
-            IconButton(onPressed: (){
-              print("submit");
-            }, icon: Icon(Icons.add)),
-            const HorizontalListItems()
-                    ],
-                  ),
-          )),
+        height: double.infinity,
+        width: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Text("Name"),
+              const Text("Date of Birth"),
+              const Text("Age"),
+              const Text(
+                "Hello",
+                style: TextStyle(
+                    fontSize: 28,
+                    color: Colors.red,
+                    fontWeight: FontWeight.w500),
+              ),
+              IconButton(
+                  onPressed: () {
+                    print("submit");
+                  },
+                  icon: Icon(Icons.add)),
+              const HorizontalListItems()
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
@@ -109,20 +115,17 @@ class HorizontalListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-          child: Row(
-        children: [
-          Text("Name"),
-          Text("Date of Birth"),
-          Text("Age"),
-          Text(
-            "Hello",
-            style: TextStyle(
-                fontSize: 28, color: Colors.red, fontWeight: FontWeight.w500),
-          )
-        ],
-      )),
+    return const Row(
+      children: [
+        Text("Name"),
+        Text("Date of Birth"),
+        Text("Age"),
+        Text(
+          "Hello",
+          style: TextStyle(
+              fontSize: 28, color: Colors.red, fontWeight: FontWeight.w500),
+        )
+      ],
     );
   }
 }
