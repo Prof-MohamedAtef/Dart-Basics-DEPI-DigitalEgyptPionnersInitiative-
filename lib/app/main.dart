@@ -74,24 +74,28 @@ class ListItems extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text("Name"),
-          const Text("Date of Birth"),
-          const Text("Age"),
-          const Text(
-            "Hello",
-            style: TextStyle(
-                fontSize: 28, color: Colors.red, fontWeight: FontWeight.w500),
-          ),
-          IconButton(onPressed: (){
-            print("submit");
-          }, icon: Icon(Icons.add)),
-          // const HorizontalListItems()
-        ],
-      )),
+          child: SizedBox(
+            height: 100,
+            width: 100,
+            child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+            const Text("Name"),
+            const Text("Date of Birth"),
+            const Text("Age"),
+            const Text(
+              "Hello",
+              style: TextStyle(
+                  fontSize: 28, color: Colors.red, fontWeight: FontWeight.w500),
+            ),
+            IconButton(onPressed: (){
+              print("submit");
+            }, icon: Icon(Icons.add)),
+            // const HorizontalListItems()
+                    ],
+                  ),
+          )),
     );
   }
 }
