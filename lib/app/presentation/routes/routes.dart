@@ -14,8 +14,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ListItemsScreen());
       case tripsScreen:
         return MaterialPageRoute(builder: (_) => const TripsScreen());
-      case mapsScreen:
-        return MaterialPageRoute(builder: (_) => const MapScreen());
+      // case mapsScreen:
+      //   return MaterialPageRoute(builder: (_) => const MapScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

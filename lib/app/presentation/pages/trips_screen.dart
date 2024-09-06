@@ -1,3 +1,4 @@
+import 'package:fluterprojects/app/presentation/pages/map_screen.dart';
 import 'package:fluterprojects/app/presentation/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../widgets/trip_cart.dart';
@@ -27,7 +28,14 @@ class TripsScreen extends StatelessWidget {
               children: [
                 TripCard(
                   onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.mapsScreen);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MapScreen(
+                            fromLat: 30.619306506190348,
+                            fromLong: 32.29563290891867,
+                            toLat: 30.607334926855913,
+                            toLong: 32.28103991622421),),);
                   },
                 ),
                 const SizedBox(
@@ -35,7 +43,14 @@ class TripsScreen extends StatelessWidget {
                 ),
                 TripCard(
                   onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.mapsScreen);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MapScreen(
+                                fromLat: 30.619306506190348,
+                                fromLong: 32.29563290891867,
+                                toLat: 30.607334926855913,
+                                toLong: 32.28103991622421),),);
                   },
                 )
               ],

@@ -2,13 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  final double fromLat;
+  final double fromLong;
+  final double toLat;
+  final double toLong;
+
+  const MapScreen({
+    super.key,
+    required this.fromLat,
+    required this.fromLong,
+    required this.toLat,
+    required this.toLong,
+  });
 
   @override
   State<StatefulWidget> createState() => _MapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen>{
+class _MapScreenState extends State<MapScreen> {
+  late Set<Marker> _markers;
+
+  @override
+  void initState() {
+    super.initState();
+    _markers = {
+      Marker(
+        markerId: const MarkerId('fromMarker'),
+        position: LatLng(widget.fromLat, widget.fromLong),
+        infoWindow: const InfoWindow(
+          title: 'From Location',
+          snippet: 'This is the starting point.',
+        ),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      ),
+      Marker(
+        markerId: const MarkerId('toMarker'),
+        position: LatLng(widget.toLat, widget.toLong),
+        infoWindow: const InfoWindow(
+          title: 'To Location',
+          snippet: 'This is the destination point.',
+        ),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+      ),
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +59,13 @@ class _MapScreenState extends State<MapScreen>{
           },
         ),
       ),
-      body: const GoogleMap(
+      body: GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: LatLng(30.59965287125796, 32.29632067501643), // Initial position (e.g., San Francisco)
+          target: LatLng(widget.fromLat , widget.fromLong),
+          // Initial position (e.g., San Francisco)
           zoom: 13,
         ),
+        markers: _markers,
         myLocationEnabled: true,
         // Add other properties as needed
       ),
