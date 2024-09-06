@@ -75,11 +75,11 @@ class ListItems extends StatelessWidget {
       ),
       body: SafeArea(
           child: SizedBox(
-            height: 100,
-            width: 100,
+            height: double.infinity,
+            width: double.infinity,
             child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
             const Text("Name"),
             const Text("Date of Birth"),
@@ -92,7 +92,7 @@ class ListItems extends StatelessWidget {
             IconButton(onPressed: (){
               print("submit");
             }, icon: Icon(Icons.add)),
-            // const HorizontalListItems()
+            const HorizontalListItems()
                     ],
                   ),
           )),
