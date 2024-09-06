@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       initialRoute: AppRoutes.home, // Set the home screen as the initial route
       onGenerateRoute: AppRoutes.onGenerateRoute,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:fluterprojects/app/presentation/widgets/map_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -46,11 +47,10 @@ class _MapScreenState extends State<MapScreen> {
     };
   }
 
-
-  void _onMapCreated(GoogleMapController controller){
+  void _onMapCreated(GoogleMapController controller) {
     _mapController = controller;
     // Show info windows for both markers after the map is initialized
-    Future.delayed(const Duration(milliseconds: 50),(){
+    Future.delayed(const Duration(milliseconds: 50), () {
       _mapController.showMarkerInfoWindow(const MarkerId('fromMarker'));
       _mapController.showMarkerInfoWindow(const MarkerId('toMarker'));
     });
@@ -59,26 +59,35 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Map'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous screen
-          },
+        appBar: AppBar(
+          title: const Text('Map'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context); // Navigate back to the previous screen
+            },
+          ),
         ),
-      ),
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(widget.fromLat , widget.fromLong),
-          // Initial position (e.g., San Francisco)
-          zoom: 13,
-        ),
-        markers: _markers,
-        myLocationEnabled: true,
-        // Add other properties as needed
-      ),
-    );
+        body: Column(children: [
+          Expanded(
+            child: MapWidget(
+                onMapCreated: (GoogleMapController) {
+                  _onMapCreated;
+                },
+                widget: widget,
+                markers: _markers),
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.white,
+              child: Center(
+                child: Text(
+                  'This is the bottom widget',
+                  style: TextStyle(fontSize: 24, color: Colors.black),
+                ),
+              ),
+            ),
+          ),
+        ]));
   }
 }
