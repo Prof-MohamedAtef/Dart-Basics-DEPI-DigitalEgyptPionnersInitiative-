@@ -1,7 +1,8 @@
+import 'package:fluterprojects/app/presentation/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../widgets/trip_cart.dart';
 
-class TripsScreen extends StatelessWidget{
+class TripsScreen extends StatelessWidget {
   const TripsScreen({super.key});
 
   @override
@@ -16,7 +17,7 @@ class TripsScreen extends StatelessWidget{
           },
         ),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(16),
@@ -24,9 +25,19 @@ class TripsScreen extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TripCard(),
-                SizedBox(height: 10,),
-                TripCard()
+                TripCard(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.mapsScreen);
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                TripCard(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.mapsScreen);
+                  },
+                )
               ],
             ),
           ),
