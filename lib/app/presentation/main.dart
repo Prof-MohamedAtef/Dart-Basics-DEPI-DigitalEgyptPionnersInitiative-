@@ -13,11 +13,46 @@
 //
 // }
 
+import 'package:fluterprojects/app/domain/entities/trip_entity.dart';
 import 'package:fluterprojects/app/presentation/routes/routes.dart';
+import 'package:fluterprojects/app/presentation/viewmodels/map_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../data/repositories/trip_repository_impl.dart';
+import '../domain/repositories/trip_repository.dart';
+import '../domain/usecases/get_trip_details_usecase.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      // Provide the TripRepository
+      // Provide the TripApi
+      Provider<TripEntity>(
+        create: (_) => TripEntity(
+          fromLat: 30.06560,
+          fromLong: 31.54646,
+          toLat: 30.06560,
+          toLong: 31.54646,
+          info: "Driver is far from the passenger around 22 mins",
+        ), // Initialize your data source
+      ),
+      // Provide the TripRepository implementation
+      Provider<TripRepository>(
+        create: (context) => TripRepositoryImpl(),
+      ),
+      // Provide the GetTripDetailsUseCase
+      Provider<GetTripDetailsUseCase>(
+        create: (context) => GetTripDetailsUseCase(
+          context.read<TripRepository>(), // Pass the TripRepository to the use case
+        ),
+      ),
+      ChangeNotifierProvider<MapViewModel>(
+        create: (context) => MapViewModel(context.read<GetTripDetailsUseCase>()),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

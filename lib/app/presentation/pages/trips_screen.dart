@@ -21,7 +21,7 @@ class TripsScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,11 +31,9 @@ class TripsScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MapScreen(
-                            fromLat: 30.619306506190348,
-                            fromLong: 32.29563290891867,
-                            toLat: 30.607334926855913,
-                            toLong: 32.28103991622421),),);
+                        builder: (context) => const MapScreen(),
+                      ),
+                    );
                   },
                 ),
                 const SizedBox(
@@ -44,15 +42,13 @@ class TripsScreen extends StatelessWidget {
                 TripCard(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MapScreen(
-                                fromLat: 30.619306506190348,
-                                fromLong: 32.29563290891867,
-                                toLat: 30.607334926855913,
-                                toLong: 32.28103991622421),),);
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MapScreen(),
+                      ),
+                    );
                   },
-                )
+                ),
               ],
             ),
           ),
