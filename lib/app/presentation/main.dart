@@ -24,35 +24,37 @@ import '../domain/repositories/trip_repository.dart';
 import '../domain/usecases/get_trip_details_usecase.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      // Provide the TripRepository
-      // Provide the TripApi
-      Provider<TripEntity>(
-        create: (_) => TripEntity(
-          fromLat: 30.06560,
-          fromLong: 31.54646,
-          toLat: 30.06560,
-          toLong: 31.54646,
-          info: "Driver is far from the passenger around 22 mins",
-        ), // Initialize your data source
-      ),
-      // Provide the TripRepository implementation
-      Provider<TripRepository>(
-        create: (context) => TripRepositoryImpl(),
-      ),
-      // Provide the GetTripDetailsUseCase
-      Provider<GetTripDetailsUseCase>(
-        create: (context) => GetTripDetailsUseCase(
-          context.read<TripRepository>(), // Pass the TripRepository to the use case
-        ),
-      ),
-      ChangeNotifierProvider<MapViewModel>(
-        create: (context) => MapViewModel(context.read<GetTripDetailsUseCase>()),
-      ),
-    ],
-    child: const MyApp(),
-  ));
+  // runApp(MultiProvider(
+  //   providers: [
+  //     // Provide the TripRepository
+  //     // Provide the TripApi
+  //     Provider<TripEntity>(
+  //       create: (_) => TripEntity(
+  //         fromLat: 30.06560,
+  //         fromLong: 31.54646,
+  //         toLat: 30.06560,
+  //         toLong: 31.54646,
+  //         info: "Driver is far from the passenger around 22 mins",
+  //       ), // Initialize your data source
+  //     ),
+  //     // Provide the TripRepository implementation
+  //     Provider<TripRepository>(
+  //       create: (context) => TripRepositoryImpl(),
+  //     ),
+  //     // Provide the GetTripDetailsUseCase
+  //     Provider<GetTripDetailsUseCase>(
+  //       create: (context) => GetTripDetailsUseCase(
+  //         context.read<TripRepository>(), // Pass the TripRepository to the use case
+  //       ),
+  //     ),
+  //     ChangeNotifierProvider<MapViewModel>(
+  //       create: (context) => MapViewModel(context.read<GetTripDetailsUseCase>()),
+  //     ),
+  //   ],
+  //   child: const MyApp(),
+  // ));
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -61,9 +63,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      initialRoute: AppRoutes.home, // Set the home screen as the initial route
+      initialRoute: AppRoutes.splash, // Set the home screen as the initial route
       onGenerateRoute: AppRoutes.onGenerateRoute,
-      debugShowCheckedModeBanner: false,
+      // debugShowCheckedModeBanner: false,
     );
   }
 }
