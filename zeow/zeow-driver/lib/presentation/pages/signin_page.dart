@@ -1,9 +1,9 @@
-import 'package:zeow/presentation/widgets/auth_custom_row_widget.dart';
+import 'package:zeow_driver/presentation/widgets/auth_custom_row_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:zeow/presentation/routes/routes.dart';
-import 'package:zeow/presentation/widgets/custom_button_widget.dart';
-import 'package:zeow/presentation/widgets/custom_text_field_widget.dart';
-import 'package:zeow/presentation/viewmodel/auth/auth_viewmodel.dart';
+import 'package:zeow_driver/presentation/routes/routes.dart';
+import 'package:zeow_driver/presentation/widgets/custom_button_widget.dart';
+import 'package:zeow_driver/presentation/widgets/custom_text_field_widget.dart';
+import 'package:zeow_driver/presentation/viewmodel/auth/auth_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -27,13 +27,16 @@ class _SignInScreenState extends State<SignInPage> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
+        backgroundColor: Colors.yellow,
         appBar: AppBar(
           title: const Text('Sign In'),
         ),
-        backgroundColor: Colors.black,
         body: Consumer<AuthViewModel>(builder: (context, authViewModel, child) {
           if (authViewModel.state is AuthLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(
+              backgroundColor: Colors.yellow,
+              color: Colors.pink,
+            ));
           } else if (authViewModel.state is AuthSuccess) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushNamed(
@@ -62,7 +65,9 @@ class _SignInScreenState extends State<SignInPage> {
               const Text(
                 'Welcome Back',
                 style: TextStyle(
-                  color: Colors.white,
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold
                 ),
               ),
               const SizedBox(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../routes/routes.dart';
+
 class CustomTextField extends StatefulWidget {
   final String title, hint;
   final Function(String)? onChanged;
@@ -10,7 +12,7 @@ class CustomTextField extends StatefulWidget {
       required this.title,
       this.onChanged,
       required this.obscureText,
-      required this.hint});
+      required this.hint,});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -32,7 +34,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Text(
           widget.title,
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 20,
           ),
         ),

@@ -18,14 +18,14 @@ class AuthCustomRowWidget extends StatelessWidget {
         children: [
           Text(
             text1.toString(),
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+            style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
           const SizedBox(
             width: 10,
           ),
           Text(
             text2.toString(),
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+            style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
         ],
       ),
